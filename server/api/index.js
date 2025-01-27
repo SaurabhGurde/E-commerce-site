@@ -96,6 +96,9 @@ server.use(
 );
 server.use(express.json()); // to parse req.body
 
+server.get("/", (req, res) => {
+  res.send("Hello World!");
+});
 server.use("/products", isAuth(), productsRouter.router);
 // we can also use JWT token for client-only auth
 server.use("/categories", isAuth(), categoriesRouter.router);
@@ -209,9 +212,9 @@ main().catch((err) => console.log(err));
 
 async function main() {
   await mongoose.connect(process.env.MONGODB_URL);
-   //await Category.insertMany(data1.categories);
-  
-  console.log("database connected")
+  //await Category.insertMany(data1.categories);
+
+  console.log("database connected");
 }
 
-export default server
+export default server;
