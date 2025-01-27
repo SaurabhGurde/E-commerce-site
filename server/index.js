@@ -81,13 +81,13 @@ opts.secretOrKey = process.env.JWT_SECRET_KEY;
 
 server.use(express.static(path.resolve(__dirname, "build")));
 server.use(cookieParser());
-// server.use(
-//   session({
-//     secret: process.env.SESSION_KEY,
-//     resave: false, // don't save session if unmodified
-//     saveUninitialized: false, // don't create session until something stored
-//   })
-// );
+server.use(
+  session({
+    secret: process.env.SESSION_KEY,
+    resave: false, // don't save session if unmodified
+    saveUninitialized: false, // don't create session until something stored
+  })
+);
 server.use(passport.authenticate("session"));
 server.use(
   cors({
@@ -219,6 +219,6 @@ async function main() {
   console.log("database connected");
 }
 
-server.listen(process.env.PORT, () => {
+server.listen(process.env.PORT || 8000, () => {
   console.log("server started");
 });
