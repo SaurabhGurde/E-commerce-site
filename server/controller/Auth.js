@@ -42,6 +42,8 @@ exports.createUser = async (req, res) => {
 };
 
 exports.loginUser = async (req, res) => {
+  return res.send("entered")
+
   const user = req.user;
   res
     .cookie('jwt', user.token, {
