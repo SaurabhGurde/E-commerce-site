@@ -24,15 +24,15 @@ import UserProfilePage from './pages/UserProfilePage';
 import { fetchLoggedInUserAsync } from './features/user/userSlice';
 import Logout from './features/auth/components/Logout';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
-import { positions, Provider } from 'react-alert';
-import AlertTemplate from 'react-alert-template-basic';
+// import { positions, Provider } from 'react-alert';
+// import AlertTemplate from 'react-alert-template-basic';
 import StripeCheckout from './pages/StripeCheckout';
 import ResetPasswordPage from './pages/ResetPasswordPage';
 
-const options = {
-  timeout: 5000,
-  position: positions.BOTTOM_LEFT,
-};
+// const options = {
+//   timeout: 5000,
+//   position: positions.BOTTOM_LEFT,
+// };
 
 
 const router = createBrowserRouter([
@@ -147,9 +147,10 @@ function App() {
     <>
       <div className="App">
         {userChecked && (
-          <Provider template={AlertTemplate} {...options}>
+          // <Provider template={AlertTemplate} {...options}>
+          // <Provider {...options}>
             <RouterProvider router={router} />
-          </Provider>
+          // </Provider>
         )}
         {/* Link must be inside the Provider */}
       </div>
