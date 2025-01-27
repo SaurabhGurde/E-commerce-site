@@ -89,11 +89,11 @@ server.use(
   })
 );
 server.use(passport.authenticate("session"));
-server.use(
-  cors({
-    exposedHeaders: ["X-Total-Count"],
-  })
-);
+// server.use(
+//   cors({
+//     exposedHeaders: ["X-Total-Count"],
+//   })
+// );
 server.use(cors())
 server.use(express.json()); // to parse req.body
 server.get("/", (req, res) => {
