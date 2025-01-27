@@ -24,7 +24,8 @@ const { isAuth, sanitizeUser, cookieExtractor } = require("./services/common");
 const path = require("path");
 const { Order } = require("./model/Order");
 const { env } = require("process");
-const { data1 } = require("./data.js");
+// const { data1 } = require("./data.js");
+const {data} = require('../test')
 const { Product } = require("./model/Product");
 const { Brand } = require("./model/Brand");
 const { Category } = require("./model/Category");
@@ -96,14 +97,14 @@ server.use(
 );
 server.use(express.json()); // to parse req.body
 
-server.use("/products", isAuth(), productsRouter.router);
+server.use("/products", productsRouter.router);
 // we can also use JWT token for client-only auth
-server.use("/categories", isAuth(), categoriesRouter.router);
-server.use("/brands", isAuth(), brandsRouter.router);
-server.use("/users", isAuth(), usersRouter.router);
+server.use("/categories", categoriesRouter.router);
+server.use("/brands", brandsRouter.router);
+server.use("/users", usersRouter.router);
 server.use("/auth", authRouter.router);
-server.use("/cart", isAuth(), cartRouter.router);
-server.use("/orders", isAuth(), ordersRouter.router);
+server.use("/cart", cartRouter.router);
+server.use("/orders", ordersRouter.router);
 
 // this line we add to make react router work in case of other routes doesnt match
 server.get("*", (req, res) =>
@@ -210,11 +211,10 @@ main().catch((err) => console.log(err));
 async function main() {
   await mongoose.connect(process.env.MONGO_URL);
   //  await Category.insertMany(data1.categories);
-  // await Product.insertMany(data1.products)
+  // await Product.deleteMany()
   // await Brand.insertMany(data1.brands)
   // await User.insertMany(data1.users)
   // await Order.insertMany(data1.orders)
-
 
   console.log("database connected");
 }

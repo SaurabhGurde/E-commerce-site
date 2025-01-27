@@ -8,9 +8,15 @@ export function fetchLoggedInUserOrders() {
 }
 
 
-export function fetchLoggedInUser() {
+export function fetchLoggedInUser(user) {
   return new Promise(async (resolve) =>{
-    const response = await fetch( process.env.REACT_APP_SERVER_URL + '/users/own') 
+    const response = await fetch( process.env.REACT_APP_SERVER_URL + '/users/own', 
+      {
+        method: "POST",
+        body: JSON.stringify(user),
+        headers: { "content-type": "application/json" },
+      }
+    ) 
     const data = await response.json()
     resolve({data})
   }

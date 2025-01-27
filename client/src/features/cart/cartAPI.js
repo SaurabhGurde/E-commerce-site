@@ -10,9 +10,9 @@ export function addToCart(item) {
   });
 }
 
-export function fetchItemsByUserId() {
+export function fetchItemsByUserId(user) {
   return new Promise(async (resolve) => {
-    const response = await fetch( process.env.REACT_APP_SERVER_URL + '/cart');
+    const response = await fetch( process.env.REACT_APP_SERVER_URL + '/cart/' + `${user.id}`);
     const data = await response.json();
     resolve({ data });
   });
