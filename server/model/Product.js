@@ -3,6 +3,7 @@ const {Schema} = mongoose;
 
 
 const productSchema = new Schema({
+    _id: { type: Schema.Types.Mixed, required: true },
     title: { type : String, required: true, unique: true},
     description: { type : String, required: true},
     price: { type: Number, min:[1, 'wrong min price'], max:[10000, 'wrong max price']},

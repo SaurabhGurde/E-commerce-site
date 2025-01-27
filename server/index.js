@@ -24,7 +24,7 @@ const { isAuth, sanitizeUser, cookieExtractor } = require("./services/common");
 const path = require("path");
 const { Order } = require("./model/Order");
 const { env } = require("process");
-//const data1 = require("./data.js");
+const { data1 } = require("./data.js");
 const { Product } = require("./model/Product");
 const { Brand } = require("./model/Brand");
 const { Category } = require("./model/Category");
@@ -81,13 +81,13 @@ opts.secretOrKey = process.env.JWT_SECRET_KEY;
 
 server.use(express.static(path.resolve(__dirname, "build")));
 server.use(cookieParser());
-server.use(
-  session({
-    secret: process.env.SESSION_KEY,
-    resave: false, // don't save session if unmodified
-    saveUninitialized: false, // don't create session until something stored
-  })
-);
+// server.use(
+//   session({
+//     secret: process.env.SESSION_KEY,
+//     resave: false, // don't save session if unmodified
+//     saveUninitialized: false, // don't create session until something stored
+//   })
+// );
 server.use(passport.authenticate("session"));
 server.use(
   cors({
@@ -208,10 +208,15 @@ server.post("/create-payment-intent", async (req, res) => {
 main().catch((err) => console.log(err));
 
 async function main() {
-  await mongoose.connect(process.env.MONGODB_URL);
-   //await Category.insertMany(data1.categories);
-  
-  console.log("database connected")
+  await mongoose.connect(process.env.MONGO_URL);
+  //  await Category.insertMany(data1.categories);
+  // await Product.insertMany(data1.products)
+  // await Brand.insertMany(data1.brands)
+  // await User.insertMany(data1.users)
+  // await Order.insertMany(data1.orders)
+
+
+  console.log("database connected");
 }
 
 server.listen(process.env.PORT, () => {

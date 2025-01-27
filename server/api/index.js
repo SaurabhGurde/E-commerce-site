@@ -211,7 +211,7 @@ server.post("/create-payment-intent", async (req, res) => {
 main().catch((err) => console.log(err));
 
 async function main() {
-  await mongoose.connect(process.env.MONGODB_URL);
+  await mongoose.connect(process.env.MONGO_URL);
   //await Category.insertMany(data1.categories);
 
   console.log("database connected");
