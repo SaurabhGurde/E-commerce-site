@@ -1,6 +1,6 @@
 export function createOrder(order) {
   return new Promise(async (resolve) => {
-    const response = await fetch('/orders', {
+    const response = await fetch( process.env.REACT_APP_SERVER_URL + '/orders', {
       method: 'POST',
       body: JSON.stringify(order),
       headers: { 'content-type': 'application/json' },
@@ -12,7 +12,7 @@ export function createOrder(order) {
 
 export function updateOrder(order) {
   return new Promise(async (resolve) => {
-    const response = await fetch('/orders/'+order.id, {
+    const response = await fetch( process.env.REACT_APP_SERVER_URL + '/orders/'+order.id, {
       method: 'PATCH',
       body: JSON.stringify(order),
       headers: { 'content-type': 'application/json' },
@@ -33,7 +33,7 @@ export function fetchAllOrders(sort, pagination) {
   }
 
   return new Promise(async (resolve) => {
-    const response = await fetch(
+    const response = await fetch( process.env.REACT_APP_SERVER_URL + 
       '/orders?' + queryString
     );
     const data = await response.json();
